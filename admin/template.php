@@ -1,5 +1,22 @@
 <?php include("includes/header.php");?>
-  <body>
+<?php 
+include('Class/functions.php');
+
+session_start();
+$loginId = $_SESSION['id'];
+//User Email show varibul
+$UserEmail = $_SESSION['Email'];
+
+if($loginId == null){
+    header('location:index.php');
+}
+//logout code here
+if(isset($_GET['logoutAdmin'])){
+    $lotOut = new AdminInfo();
+    $lotOut->AdminLogOut();
+}
+
+?>
   <body>
 	  <div class="fixed-button">
 		<a href="https://codedthemes.com/item/gradient-able-admin-template" target="_blank" class="btn btn-md btn-primary">
