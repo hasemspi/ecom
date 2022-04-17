@@ -41,6 +41,51 @@ public function AdminLogOut(){
     unset($_SESSION['Password']);
     header('location:index.php');
 }
+public function AddCategory($data){
+    $catName = $data['cat_name'];
+    $catDescripion = $data['cat_des'];
+    $cat_status =   $data['ctg_status'];
+
+$query = "INSERT INTO `category`(`Cat_Name`, `Cat_description`, `Cat_Status`) VALUES ('$catName','$catDescripion','$cat_status')";
+
+if(mysqli_query($this->conn,$query)){
+    $meassage = "Add Category Is Sucessfully";
+    return $meassage;
+}else{
+    $meassage = "Add Category Not Sucessfully";
+    return $meassage;
+}
+}
+
+public function CategorySelect(){
+    $query = "SELECT * FROM category";
+    if(mysqli_query($this->conn,$query)){
+        $result = mysqli_query($this->conn,$query);
+        return $result;
+    }
+}
+
+public function getcategory_Publish($id){
+    $publish = "UPDATE `category` SET `Cat_Status`= 1 WHERE cat_id=$id";
+    if(mysqli_query($this->conn, $publish)){
+        $publisss =mysqli_query($this->conn, $publish);
+        return $publisss;
+    }
+}
+public function getcat_unpublish($id){
+    $unpublis = "UPDATE `category` SET `Cat_Status`=0 WHERE cat_id=$id";
+    if(mysqli_query($this->conn, $unpublis)){
+        $publisss =mysqli_query($this->conn, $unpublis);
+        return $unpublis;
+    }
+}
+public function cat_delete($id){
+    $delte = "DELETE FROM `category` WHERE cat_id =$id";
+    if(mysqli_query($this->conn,$delte)){
+        $mgs = "Data has been Delete sucessfully";
+        return $mgs;
+    }
+}
 
 }
 
