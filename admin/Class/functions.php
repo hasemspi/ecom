@@ -86,6 +86,27 @@ public function cat_delete($id){
         return $mgs;
     }
 }
+public function EditCate($id){
+  $sql = "SELECT * FROM `category` WHERE cat_id = $id";
+
+  if(mysqli_query($this->conn,$sql)){
+      $result = mysqli_query($this->conn,$sql);
+      $row = mysqli_fetch_assoc($result);
+      return $row;
+  }
+
+}
+public function update_category(){
+    $ctg_id     = $_POST['u_ctg_id'];
+    $u_ctg_name = $_POST['u_ctg_name'];
+    $u_ctg_des  = $_POST['u_ctg_des'];
+    $sql = "UPDATE `category` SET `Cat_Name`='$u_ctg_name',`Cat_description`='$u_ctg_des' WHERE cat_id = $ctg_id";
+    if(mysqli_query($this->conn,$sql)){
+        $return_msg = "Category Updated Successfully!";
+        return $return_msg;
+    }
+
+}
 
 }
 

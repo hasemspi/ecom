@@ -61,6 +61,8 @@ if(isset($_GET['logoutAdmin'])){
                                         }elseif($views === "manage-product"){
                                             include("view/manage-product-view.php");
                                              
+                                        }elseif($views === "edit-cat"){
+                                            include("view/edit_cat_view.php");
                                         }
                                     }
                                     

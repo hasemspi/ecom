@@ -59,7 +59,7 @@ if(isset($_GET['status'])){
             ?>
             </td>
             <td>
-            <a href="#">
+            <a href="edit_cat.php?status=edit&&id=<?php echo $row['cat_id'];?>">
                 <span><strong>Edit</strong></span>            
             </a>/
             <a href="?status=delete&&id=<?php echo $row['cat_id'];?>" >
