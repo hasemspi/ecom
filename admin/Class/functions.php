@@ -107,6 +107,55 @@ public function update_category(){
     }
 
 }
+public function AddProduct($data){
+    $pdt_name = $data['pdt_name'];
+    $pdt_price = $data['pdt_price'];
+    $pdt_des = $data['pdt_des'];
+    $pdt_ctg = $data['pdt_ctg'];
+    $img_name = $_FILES['pdt_image']['name'];
+    $pdt_tem = $_FILES['pdt_image']['tmp_name'];
+    $pdt_size = $_FILES['pdt_image']['size'];
+    $pdf_ext = pathinfo($img_name,PATHINFO_EXTENSION);
+    $pdt_status = $data['pdt_status'];
+
+    if($pdf_ext == 'jpg' or $pdf_ext== 'png' or $pdf_ext== 'jpeg'){
+
+        if($pdt_size <=2097152){
+
+            $sql = "INSERT INTO `products`(`pdt_name`, `pdt_price`, `pdt_des`, `pdt_ctg`, `pdt_img`, `pdt_status`) VALUES 
+            ('$pdt_name','$pdt_price','$pdt_des','$pdt_ctg','$img_name','$pdt_status')";
+
+            if(mysqli_query($this->conn,$sql)){
+                move_uploaded_file($pdt_tem,'upload/'.$pdt_name);
+                $msg = "Product Added Successfully!";
+                return $msg;
+            }
+        }else{
+            $msg = "Your File Size Should Be Less or Equal 2 MB!";
+        }
+    }else{
+        $msg = "Your File Must Be a JPG or PNG File!";
+        return $msg;
+    }
+}
+public function ManageSelectProduct(){
+    $sql = "SELECT a.pdt_id ,a.pdt_name,a.pdt_price,a.pdt_des,a.pdt_img,a.pdt_status,b.Cat_Name
+    FROM `products` a
+    INNER JOIN category AS b ON a.pdt_ctg = b.cat_id
+    ORDER BY b.Cat_Name;";
+    
+    if(mysqli_query($this->conn,$sql)){
+        $result = mysqli_query($this->conn,$sql);
+        return $result;
+    }
+}
+public function delete_product($id){
+    $sql = "DELETE FROM `products` WHERE pdt_id=$id";
+    if(mysqli_query($this->conn,$sql)){
+        $result = "Delete is sucessfully";
+        return $result;
+    }
+}
 
 }
 

@@ -52,17 +52,24 @@ if(isset($_GET['logoutAdmin'])){
                                     if($views){
                                         if($views === "dashboard"){
                                             include("view/dashboard-view.php");
-                                        }elseif ($views === "add-cat"){
+                                        }
+                                        elseif ($views === "add-cat"){
                                             include ("view/add-category-view.php");
-                                        }elseif($views === "manage-cat"){
+                                        }
+                                        elseif($views === "manage-cat"){
                                             include("view/manage-category-view.php");
-                                        }elseif($views ==="add-product"){
+                                        }
+                                        elseif($views ==="add-product"){
                                             include("view/add-product-view.php");
-                                        }elseif($views === "manage-product"){
+                                        }
+                                        elseif($views === "manage-product"){
                                             include("view/manage-product-view.php");
-                                             
-                                        }elseif($views === "edit-cat"){
+                                        }
+                                        elseif($views === "edit-cat"){
                                             include("view/edit_cat_view.php");
+                                        }
+                                        elseif($views === "edit-product"){
+                                            include("view/edit_product_view.php");
                                         }
                                     }
                                     
