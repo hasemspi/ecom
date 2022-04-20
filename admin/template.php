@@ -68,7 +68,7 @@ if(isset($_GET['logoutAdmin'])){
                                         elseif($views === "edit-cat"){
                                             include("view/edit_cat_view.php");
                                         }
-                                        elseif($views === "edit-product"){
+                                        elseif($views === "edit-produc"){
                                             include("view/edit_product_view.php");
                                         }
                                     }

@@ -149,6 +149,9 @@ public function ManageSelectProduct(){
         return $result;
     }
 }
+
+
+
 public function delete_product($id){
     $sql = "DELETE FROM `products` WHERE pdt_id=$id";
     if(mysqli_query($this->conn,$sql)){
@@ -156,7 +159,49 @@ public function delete_product($id){
         return $result;
     }
 }
+public function Edit_product($id){
+    $sql = "SELECT * FROM `products` WHERE pdt_id = $id";
 
+    if(mysqli_query($this->conn,$sql)){
+        $result = mysqli_query($this->conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    }
+  
+  }
+
+
+public function update_product($id){
+    $pdt_name = $_POST['U_pdt_name'];
+    $pdt_price = $_POST['U_pdt_price'];
+    $pdt_des = $_POST['U_pdt_des'];
+    $pdt_ctg = $_POST['U_pdt_ctg'];
+    $img_name = $_FILES['U_pdt_image']['name'];
+    $pdt_tem = $_FILES['U_pdt_image']['tmp_name'];
+    $pdt_size = $_FILES['U_pdt_image']['size'];
+    $pdf_ext = pathinfo($img_name,PATHINFO_EXTENSION);
+    $pdt_status = $_POST['U_pdt_status'];
+    $pdt_id = $_POST['u_pdt_id'];
+
+    if($pdf_ext == 'jpg' or $pdf_ext== 'png' or $pdf_ext== 'jpeg'){
+
+        if($pdt_size <=2097152){
+
+            $sql = "UPDATE `products` SET `pdt_name`='$pdt_name',`pdt_price`='$pdt_price',`pdt_des`='$pdt_des',
+            `pdt_img`='$img_name',`pdt_status`='$pdt_status',`pdt_ctg`='$pdt_ctg' WHERE pdt_id=$pdt_id";
+            if(mysqli_query($this->conn,$sql)){
+                move_uploaded_file($pdt_tem,'upload/'.$pdt_name);
+                $msg = "Product Added Successfully!";
+                return $msg;
+            }
+        }else{
+            $msg = "Product Update is sucessfully";
+        }
+    }else{
+        $msg = "Your File Must Be a JPG or PNG File!";
+        return $msg;
+    }
+   }
 }
 
 ?>
