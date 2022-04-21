@@ -1,6 +1,6 @@
 <?php
 $result = new AdminInfo();
-$data = $result->CategorySelect();
+$data = $result->CategorySelect_with_product();
 if(isset($_GET['prostatus'])){
     $pdt_id = $_GET['id'];
     if($_GET['prostatus'] =='edit'){

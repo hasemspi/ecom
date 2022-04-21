@@ -64,6 +64,13 @@ public function CategorySelect(){
         return $result;
     }
 }
+public function CategorySelect_with_product(){
+    $query = "SELECT * FROM category WHERE Cat_Status =1";
+    if(mysqli_query($this->conn,$query)){
+        $result = mysqli_query($this->conn,$query);
+        return $result;
+    }
+}
 
 public function getcategory_Publish($id){
     $publish = "UPDATE `category` SET `Cat_Status`= 1 WHERE cat_id=$id";

@@ -1,6 +1,6 @@
 <?php
 $result = new AdminInfo();
-$data = $result->CategorySelect();
+$data = $result->CategorySelect_with_product();
 
 // if(isset($_FILES['pdt_image'])){
 //     echo "<pre>";
