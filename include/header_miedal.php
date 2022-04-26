@@ -10,7 +10,7 @@
                                <?php
                             foreach ($product as $rows){
                             ?>
-                            <li class="menu-item"><a href="#"><?php echo $rows['Cat_Name'];?></a></li>
+                            <li class="menu-item"><a href="category.php?status=cat_show&&id=<?php echo $rows['cat_id'];?>"><?php echo $rows['Cat_Name'];?></a></li>
                                 <?php } ?>
                             </ul>
                         </div>

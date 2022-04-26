@@ -17,7 +17,7 @@
                 
                 ?>
                 <li class="menu-item menu-item-has-children has-megamenu">
-                    <a href="#" class="menu-name" data-title="<?php echo $rows['Cat_Name']; ?>">
+                    <a href="category.php?status=cat_show&&id=<?php echo $rows['cat_id'];?>" class="menu-name" data-title="<?php echo $rows['Cat_Name']; ?>">
                         <?php echo $rows['Cat_Name']; ?>
                     </a>
                 </li>

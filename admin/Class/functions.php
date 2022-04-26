@@ -133,7 +133,7 @@ public function AddProduct($data){
             ('$pdt_name','$pdt_price','$pdt_des','$pdt_ctg','$img_name','$pdt_status')";
 
             if(mysqli_query($this->conn,$sql)){
-                move_uploaded_file($pdt_tem,'upload/'.$pdt_name);
+                move_uploaded_file($pdt_tem,'upload/'.$img_name);
                 $msg = "Product Added Successfully!";
                 return $msg;
             }
@@ -197,7 +197,7 @@ public function update_product($id){
             $sql = "UPDATE `products` SET `pdt_name`='$pdt_name',`pdt_price`='$pdt_price',`pdt_des`='$pdt_des',
             `pdt_img`='$img_name',`pdt_status`='$pdt_status',`pdt_ctg`='$pdt_ctg' WHERE pdt_id=$pdt_id";
             if(mysqli_query($this->conn,$sql)){
-                move_uploaded_file($pdt_tem,'upload/'.$pdt_name);
+                move_uploaded_file($pdt_tem,'upload/'.$img_name);
                 $msg = "Product Added Successfully!";
                 return $msg;
             }
@@ -209,6 +209,28 @@ public function update_product($id){
         return $msg;
     }
    }
+
+   public function getcatshowProducts($id){
+    $query = "SELECT pdt_id, a.pdt_name,a.pdt_price,a.pdt_des,a.pdt_img,a.pdt_status,b.Cat_Name
+        FROM `products` a
+        INNER JOIN category b ON a.pdt_ctg = b.cat_id
+        WHERE `pdt_ctg`=$id";
+    if(mysqli_query($this->conn,$query)){
+        $result = mysqli_query($this->conn,$query);
+        return $result;
+    }
+}
+
+public function getsingleProduct($id){
+    $query = "SELECT pdt_id, a.pdt_name,a.pdt_price,a.pdt_des,a.pdt_img,a.pdt_status,b.Cat_Name
+    FROM `products` a
+    INNER JOIN category b ON a.pdt_ctg = b.cat_id
+      WHERE `pdt_id`=$id";
+    if(mysqli_query($this->conn,$query)){
+        $result = mysqli_query($this->conn,$query);
+        return $result;
+    }
+}
 }
 
 ?>
